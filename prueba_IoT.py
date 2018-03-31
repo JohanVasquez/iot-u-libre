@@ -1,4 +1,4 @@
 print('IOT universidad libre :{) ')
 var = "tecla"
-print(tecla)
+print(var)
 print('IOT universidad libre >:( ')
