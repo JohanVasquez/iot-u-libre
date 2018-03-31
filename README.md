@@ -2,4 +2,4 @@
 
 Project school the iot in University Libre - Cali
 
-autor: Johan Vasquez - Rafael Rodriguez
+autor: Johan Vasquez - Rafael Rodríguez
