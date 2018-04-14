@@ -1,0 +1,23 @@
+.idea
+*.pyc
+.gitignore~
+.coverage
+flake8.txt
+
+htmlcov/
+media/
+deltec/settings/secrets.json
+*/migrations/*
+*/__pycache__/*
+
+# No ignorar!
+!*/migrations/__init__.py
+!.gitignore
+!static/assets/plugins/datatables/media/
+!static/assets/plugins/parsley/bower_components/mocha/media/
+
+.coveragerc~
+.flake8~
+manage.py
+requirements.txt~
+deltec/wsgi.py
