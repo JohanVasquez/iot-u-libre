@@ -1,0 +1,20 @@
+.idea
+*.pyc
+.gitignore~
+.coverage
+
+
+htmlcov/
+media/
+*/migrations/*
+*/__pycache__/*
+*workspace.xml*
+
+# No ignorar!
+!*/migrations/__init__.py
+!.gitignore
+!static/assets/plugins/datatables/media/
+!static/assets/plugins/parsley/bower_components/mocha/media/
+
+requirements.txt~
+
