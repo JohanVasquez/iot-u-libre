@@ -1,0 +1,23 @@
+{% extends 'base_login.html' %}
+{% load bootstrap3 %}
+
+{% block titulo_pagina %}Iniciar sesión{% endblock %}
+
+{% block contenido %}
+	<form method="post" id="login-form" action="" class="margin-bottom-0">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{next}}"/>
+        <h3 class="form-title" style="text-align: center; font-weight: bold">Iniciar sesión</h3>
+
+        {% bootstrap_form form layout='inline' %}
+
+        <div class="form-actions">
+            <button type="submit" class="btn blue-steel btn-block sbold uppercase">
+                <i class="fa fa-sign-in"></i> Ingresar
+            </button>
+        </div>
+        <div>
+            <a class="pull-rigth" href="{% url 'password_reset' %}" style="color: white;">¿ Olvidó su contraseña ?</a>
+        </div>
+    </form>
+{% endblock %}

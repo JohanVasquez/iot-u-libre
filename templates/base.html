@@ -1,0 +1,286 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block titulo_pagina %}{% endblock titulo_pagina %} SEOT</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="{% static 'assets/global/css/font-google.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/global/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/global/plugins/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/global/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN THEME GLOBAL STYLES -->
+        <link href="{% static 'assets/global/css/components-md.min.css' %}" rel="stylesheet" id="style_components" type="text/css" />
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="{% static 'assets/layouts/layout/css/layout.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/layouts/layout/css/themes/darkblue.min.css' %}" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="{% static 'assets/layouts/layout/css/custom.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- END THEME LAYOUT STYLES -->
+
+        <link href="{% static 'assets/global/plugins/toastr/toastr.min.css' %}" rel="stylesheet" type="text/css" />
+
+        <link href="{% static 'assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css' %}" rel="stylesheet" type="text/css" />
+
+        <link href="{% static 'assets/global/plugins/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/global/plugins/select2/css/select2-bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+
+        <!-- <link href="{% static 'assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css' %}" rel="stylesheet" type="text/css"> -->
+
+        <link href="{% static 'assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'css/custom.css' %}" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="{% static 'img/seot-logo-icon.ico' %}" />
+
+        {% block css %} {% endblock css %}
+    </head>
+
+    <!-- END HEAD -->
+
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <img src="{% static '/img/logo.png' %}" alt="logo" width="100px" class="logo-default" />
+                    <div class="menu-toggler sidebar-toggler">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        {% if request.user.is_authenticated %}
+                            <li class="dropdown dropdown-user">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    {% if request.user.foto %}
+                                        <img alt="" class="img-circle" src="{{ request.user.foto.url }}" />
+                                    {% else %}
+                                        <i class="fa fa-user"></i>
+                                    {% endif %}
+                                    {% if request.user.is_superuser %}
+                                        <span class="username username-hide-on-mobile"> Administrador </span>
+                                    {% else %}
+                                        <span class="username username-hide-on-mobile"> {{ request.user.persona.get_full_name }} </span>
+                                    {% endif %}
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-default">
+                                    {% if not request.user.is_superuser %}
+                                        <li>
+                                            <a href="{% url 'gestion_usuarios:perfil' %}">
+                                                <i class="icon-user"></i> Ver perfil
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    <li>
+                                        <a href="{% url 'password_change' %}">
+                                            <i class="icon-lock"></i> Cambiar contraseña
+                                        </a>
+                                    </li>
+                                    <li class="divider"> </li>
+                                    <li>
+                                        <a href="{% url 'logout' %}">
+                                            <i class="fa fa-sign-out"></i> Cerrar sesión </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="dropdown dropdown-quick-sidebar-toggler" style="padding-top: 8px">
+                                <a href="{% url 'login' %}" class="btn btn-default btn-sm">
+                                    Iniciar sesión <i class="icon-login"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                        <!-- END QUICK SIDEBAR TOGGLER -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <!-- BEGIN SIDEBAR -->
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <ul class="page-sidebar-menu page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 2px">
+                        <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                        <li class="sidebar-toggler-wrapper hide">
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <div class="sidebar-toggler">
+                                <span></span>
+                            </div>
+                            <!-- END SIDEBAR TOGGLER BUTTON -->
+                        </li>
+                        <li class="nav-item {% if request.path == '/'%}active{% endif %}">
+                            <a href="{% url 'inicio' %}" class="nav-link nav-toggle">
+                                <i class="icon-home"></i>
+                                <span class="title">Inicio</span>
+                            </a>
+                        </li>
+                        {% if request.tenant.schema_name == 'public' %}
+                            {% include 'menu-navegacion-public.html' %}
+                        {% else %}
+                            {% include 'menu-navegacion-tenant.html' %}
+                        {% endif %}
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE BAR -->
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            <li>
+                                <a href="{% url 'inicio' %}">Inicio</a>
+                                <i class="fa fa-circle"></i>
+                            </li>
+                            {% block breadcrumb %}
+
+                            {% endblock breadcrumb %}
+                        </ul>
+                    </div>
+                    <!-- END PAGE BAR -->
+                    <!-- BEGIN PAGE TITLE-->
+                    <h3 class="page-title">{% block titulo_contenido %} {% endblock %}</h3>
+                    <!-- END PAGE TITLE-->
+                    <!-- END PAGE HEADER-->
+
+                    {% block contenido %}
+                        <div class="portlet light bordered">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <span class="caption-subject font-dark bold uppercase">{% block titulo_panel %} {% endblock titulo_panel %} </span>
+                                </div>
+                                <div class="actions">
+                                    {% block botones_panel %} {% endblock botones_panel %}
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {% block contenido_panel %}
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-10">
+                                                    {% block contenido_panel_form %} {% endblock contenido_panel_form %}
+                                                </div>
+                                                <div class="col-md-1"></div>
+                                            </div>
+                                        {% endblock contenido_panel %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END SAMPLE FORM PORTLET-->
+
+                    {% endblock contenido %}
+
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="page-footer-inner">
+                Iot - 2018 &copy; Universidad Libre - Cali
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+
+        <script>
+            STATIC_URL = "{% static '' %}";
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="{% static 'assets/global/plugins/respond.min.js' %}"></script>
+        <script src="{% static 'assets/global/plugins/excanvas.min.js' %}"></script>
+        <![endif]-->
+        <!-- BEGIN CORE PLUGINS -->
+        <script src="{% static 'assets/global/plugins/jquery.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/js.cookie.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/jquery.blockui.min.js' %}" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="{% static 'assets/global/scripts/app.min.js' %}" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="{% static 'assets/layouts/layout/scripts/layout.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/layouts/layout/scripts/demo.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/layouts/global/scripts/quick-sidebar.min.js' %}" type="text/javascript"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+
+        <script src="{% static 'assets/global/plugins/moment.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js' %}" type="text/javascript"></script>
+
+        <script src="{% static 'assets/global/plugins/toastr/toastr.min.js' %}" type="text/javascript"></script>
+
+        <script src="{% static 'assets/global/plugins/select2/js/select2.full.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/select2/js/i18n/es.js' %}" type="text/javascript"></script>
+
+        <script src="{% static 'assets/global/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js' %}" type="text/javascript"></script>
+
+        <script src="{% static 'assets/global/plugins/jquery-mask/jquery.mask.min.js' %}" type="text/javascript"></script>
+
+        <script src="{% static 'assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/pages/scripts/ui-extended-modals.min.js' %}" type="text/javascript"></script>
+
+        <script src="{% static 'js/custom.js' %}" type="text/javascript"></script>
+
+        {% include 'session_security/all.html' %}
+
+        {% block javascript %} {% endblock javascript %}
+
+        <script>
+            $(document).ready(function() {
+                App.init();
+                {% for m in messages %}
+                    toastr["{{ m.tags }}"]('{{ m }}');
+                {% endfor %}
+            });
+        </script>
+    </body>
+
+</html>
