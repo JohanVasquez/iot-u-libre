@@ -35,7 +35,7 @@
                         <div class="number">
                             <span data-counter="counterup" data-value="{{ total_personas }}">0</span>
                         </div>
-                        <div class="desc"> Total de empleados </div>
+                        <div class="desc"> Total de sensores </div>
                     </div>
                 </a>
             </div>
@@ -47,7 +47,7 @@
                     <div class="details">
                         <div class="number">
                             <span data-counter="counterup" data-value="{{ total_proyectos }}">0</span></div>
-                        <div class="desc"> Total de proyectos </div>
+                        <div class="desc"> Total de consumo </div>
                     </div>
                 </a>
             </div>
@@ -61,45 +61,10 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-share font-dark hide"></i>
-                        <span class="caption-subject font-dark bold uppercase">Próximos cumpleaños</span>
+                        <span class="caption-subject font-dark bold uppercase">Sensores Activos</span>
                     </div>
                 </div>
                 <div class="portlet-body">
-                    {% if lista_cumpleanios %}
-                        <div class="scroller" style="height: 250px;" data-always-visible="1" data-rail-visible="0">
-                            <ul class="feeds">
-                                {% for item in lista_cumpleanios %}
-                                    <li>
-                                        <div class="col1">
-                                            <div class="cont">
-                                                <div class="cont-col1">
-                                                    <div class="label label-sm label-{{ item.color }}">
-                                                        <i class="fa fa-user"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="cont-col2">
-                                                    <div class="desc"> {{ item.nombre }}
-                                                        <span class="label label-sm label-info ">
-                                                            <i class="fa fa-calendar"></i> {{ item.fecha }}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col2">
-                                            <div class="date"> {{ item.tiempo_restante }} </div>
-                                        </div>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="scroller-footer">
-                        </div>
-                    {% else %}
-                        <div class="alert alert-info" role="alert">
-                            No se encontraron próximos cumpleaños.
-                        </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
