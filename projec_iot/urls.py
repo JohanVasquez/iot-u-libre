@@ -13,15 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
-
+from projec_iot.views import Dashboard
 
 urlpatterns = [
+    url(r'^$', Dashboard.as_view(), name='inicio'),
     url(r'^admin/', admin.site.urls),
     url(r'^login$', auth_views.login, name='login'),
     url(r'^logout$', auth_views.logout, {'next_page': 'inicio'}, name='logout'),
@@ -35,6 +35,6 @@ urlpatterns = [
       auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^restablecer-password-completado/', auth_views.password_reset_complete,
       name='password_reset_complete'),
+    url(r'session_security/', include('session_security.urls')),
 
-                  #url(r'^logout$', auth_views.logout, {'next_page': 'inicio'}, name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

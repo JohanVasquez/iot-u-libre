@@ -142,11 +142,7 @@
                                 <span class="title">Inicio</span>
                             </a>
                         </li>
-                        {% if request.tenant.schema_name == 'public' %}
-                            {% include 'menu-navegacion-public.html' %}
-                        {% else %}
-                            {% include 'menu-navegacion-tenant.html' %}
-                        {% endif %}
+
                     </ul>
                     <!-- END SIDEBAR MENU -->
                 </div>

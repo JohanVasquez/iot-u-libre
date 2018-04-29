@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     'sensores',
+    'session_security'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'session_security.middleware.SessionSecurityMiddleware',
+
 ]
 
 ROOT_URLCONF = 'projec_iot.urls'
@@ -136,3 +139,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static_collected')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SECURITY_WARN_AFTER = 20000
+SESSION_SECURITY_EXPIRE_AFTER = 20000

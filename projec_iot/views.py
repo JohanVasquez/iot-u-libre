@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+import random
+import datetime
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+
+
+class Dashboard(LoginRequiredMixin, TemplateView):
+    template_name = 'project_iot/index.html'
