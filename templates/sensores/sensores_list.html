@@ -1,0 +1,101 @@
+{%extends "base.html"%}
+{% load staticfiles %}
+
+{%block titulo_panel %}
+     Sensores
+{% endblock%}
+
+{%block titulo_pagina %}
+     Sensor
+{% endblock%}
+
+{% block breadcrumb %}
+    <li class="active">
+        <span>Sensores</span>
+    </li>
+{% endblock %}
+
+{% block titulo_contenido %}
+    Consultar Sensores
+{% endblock %}
+
+{% block botones_panel %}
+    <a href="{% url 'gestion_sensores:crear_sensor' %}" class="btn btn-primary btn-xs"><i class="fa fa-clipboard"></i> Registrar</a>
+{% endblock %}
+
+{% block contenido_panel %}
+    {% if object_list %}
+        <table class="table table-bordered table-hover datatable">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Área</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cargo in object_list %}
+                    <tr>
+                        <td>{{ cargo.nombre }}</td>
+                        <td>{{ cargo.get_area_display }}</td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#modal-ver-mas-{{ cargo.pk }}" title="Ver"
+                               class="btn btn-circle btn-icon btn-success btn-sm"><i class="fa fa-search"></i>
+                            </a>
+                            <a href="{% url 'contrato:editar_cargo' cargo.pk %}"  title="Editar"
+                               class="btn btn-circle btn-icon btn-primary btn-sm"><i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+
+                    <div id="modal-ver-mas-{{ cargo.pk }}" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Información del cargo</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        <b>Nombre: </b>{{ cargo.nombre }}<br>
+                                        <b>Área: </b>{{ cargo.get_area_display }}<br>
+                                        <b>Riesgo laboral: </b>
+                                            {% if cargo.riesgo_laboral %}
+                                                {{ cargo.riesgo_laboral }}
+                                            {% else %}
+                                                No registra
+                                            {% endif %}
+                                        <br>
+                                    </p>
+                                    <p>
+                                        <b>Documentos requeridos para el cargo: </b><br>
+                                        {% if cargo.tipos_soporte.count == 0 %}
+                                            No hay documentos asociados.
+                                        {% else %}
+                                            <ul>
+                                                {% for item in cargo.tipos_soporte.all %}
+                                                    <li>{{ item }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            No hay cargos registrados en el sistema.
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/init_datatable.js' %}"></script>
+{% endblock %}

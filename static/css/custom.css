@@ -1,0 +1,72 @@
+.required label:after{
+    content: ' (*)';
+}
+
+.select2{
+    width: 100% !important;
+}
+
+/*
+.checkbox label, .radio label {
+    padding-left: 20px !important;
+}*/
+
+/* container */
+
+.navbar.navbar-inverse .navbar-brand, .sidebar .nav > li.active > a, .sidebar .nav > li.active > a:focus, .sidebar .nav > li.active > a:hover, .page-sidebar-minified .sidebar .nav > li.has-sub.active:focus > a, .page-sidebar-minified .sidebar .nav > li.has-sub.active:hover > a, .page-sidebar-minified .sidebar .nav > li.has-sub.active > a, .label.label-theme, .btn.btn-scroll-to-top {
+    background: #348fe2 !important;
+}
+
+.text-theme, .sidebar .sub-menu > li.active > a:before {
+    color: #348fe2 !important;
+}
+
+.alert.alert-info {
+    background: #e0ebf9 !important;
+}
+
+body {
+    font-size: 13.5px !important;
+}
+
+/* Colores del menú */
+
+
+/* Colores del wizard
+ Normal: #2196f3
+ Dark: #0069c0
+ Light: #6ec6ff
+
+ Normal: #337ab7
+ Dark: #004e87
+ Light: #6ca9ea
+ */
+
+.form-wizard .steps>li.active>a.step .number {
+    background-color: #337ab7 !important;
+    color: #fff;
+}
+
+.form-wizard .steps>li.done>a.step .number {
+    background-color: #6ca9ea !important;
+    color: #fff;
+}
+
+.has-feedback label~.form-control-feedback {
+    top: 22px !important;
+    right: -25px !important;
+}
+
+.panel-title {
+    font-size: 16px;
+}
+
+.hover-list li:hover {
+    color: #121212 !important;
+    background-color: #DDD !important;
+}
+
+
+.input-block {
+    pointer-events: none
+}

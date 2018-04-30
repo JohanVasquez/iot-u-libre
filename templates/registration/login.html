@@ -3,21 +3,28 @@
 
 {% block titulo_pagina %}Iniciar sesión{% endblock %}
 
+{% block titulo_contenido %}
+    <b>Iniciar sesión</b>
+{% endblock %}
+
+{% block icon %}
+    <i class="fa fa-share-square-o"></i>
+{% endblock %}
+
 {% block contenido %}
 	<form method="post" id="login-form" action="" class="margin-bottom-0">
         {% csrf_token %}
-        <input type="hidden" name="next" value="{{next}}"/>
-        <h3 class="form-title" style="text-align: center; font-weight: bold">Iniciar sesión</h3>
 
         {% bootstrap_form form layout='inline' %}
 
-        <div class="form-actions">
-            <button type="submit" class="btn blue-steel btn-block sbold uppercase">
+        <div class="login-buttons">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">
                 <i class="fa fa-sign-in"></i> Ingresar
             </button>
         </div>
-        <div>
-            <a class="pull-rigth" href="{% url 'password_reset' %}" style="color: white;">¿ Olvidó su contraseña ?</a>
+        <div class="m-t-20 text-center">
+            ¿Olvidó su contraseña? Click <a href="{% url 'password_reset' %}">aquí</a> para recuperarla.
+
         </div>
     </form>
 {% endblock %}

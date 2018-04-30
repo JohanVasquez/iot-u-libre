@@ -1,0 +1,39 @@
+.number-stats {
+margin: 10px 0; }
+.number-stats .stat-number {
+display: inline-block;
+margin: 0 5px; }
+.number-stats .stat-number .title {
+font-size: 13px;
+margin-bottom: 3px;
+color: #B8C3C7; }
+.number-stats .stat-number .number {
+font-size: 27px;
+line-height: 27px;
+color: #7D8C9D; }
+.number-stats .stat-chart {
+display: inline-block;
+margin: 0 5px; }
+.number-stats > div {
+border-right: 1px solid #f5f5f5; }
+.number-stats > div:last-child {
+border-right: 0; }
+.number-stats .stat-left {
+float: right; }
+.number-stats .stat-left .stat-number {
+float: right;
+text-align: right; }
+.number-stats .stat-left .stat-chart {
+float: right; }
+.number-stats .stat-right {
+float: left !important; }
+.number-stats .stat-right .stat-number {
+float: left;
+text-align: left; }
+.number-stats .stat-right .stat-chart {
+float: left; }
+.number-stats .stat-number {
+float: left;
+text-align: left; }
+.number-stats .stat-chart {
+float: left; }
