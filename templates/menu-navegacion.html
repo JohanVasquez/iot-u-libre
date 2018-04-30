@@ -1,19 +1,16 @@
-    <li class="heading">
-        <h3 class="uppercase"><b>GESTIÓN SENSORES</b></h3>
-    </li>
-
-    <li class="nav-item {% if 'gestion-sensores/' in request.path %}active{% endif %}">
+    <li class="has-sub {% if 'gestion-sensores/' in request.path %}active{% endif %}">
         <a href="javascript:;" class="nav-link nav-toggle">
-            <i class="fa fa-child"></i>
-            <span class="title">Sensores</span>
-            <span class="arrow"></span>
+            <b class="caret pull-right"></b>
+            <i class="fa fa-microchip"></i>
+            <span class="title">Gestión Sensores</span>
         </a>
         <ul class="sub-menu">
-            <li class="nav-item {% if 'gestion-sensores/listar-sensor' in request.path %}active{% endif %}">
+            <li {% if 'personas/' in request.path %}class="active"{% endif %}>
                 <a href="{% url 'gestion_sensores:listar_sensor' %}" class="nav-link">
                     <span class="title">Sensores</span>
                 </a>
             </li>
         </ul>
     </li>
+
 

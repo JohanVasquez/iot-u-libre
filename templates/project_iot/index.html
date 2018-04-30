@@ -1,80 +1,94 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load bootstrap3 %}
 
 {% block titulo_pagina %}
     Dashboard
 {% endblock %}
 
 {% block css %}
-    <link href="{% static 'assets/global/plugins/animate/animate.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/plugins/animate/animate.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/plugins/openlayers_v4.1.1/css/ol.css' %}" rel ="stylesheet"  type="text/css" />
+    <style>
+        #map {
+            height: 450px;
+            width : 100%;
+        }
+        #popup {
+            width: 200px;
+            padding-bottom: 50px;
+        }
+    </style>
 {% endblock %}
 
 {% block breadcrumb %}
-    <li class="active">
-        <span>Dashboard</span>
-    </li>
 {% endblock breadcrumb %}
 
 {% block titulo_contenido %}
-
+    Dashboard
 {% endblock %}
 
 {% block contenido %}
-    <div class="well" style="background-color: white">
-
-        <div class="row">
-            <div class="col-md-12">
-                <h3 style="text-align: center">Indicadores generales</h3>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
-                    <div class="visual">
-                        <i class="fa fa-users"></i>
-                    </div>
-                    <div class="details">
-                        <div class="number">
-                            <span data-counter="counterup" data-value="{{ total_personas }}">0</span>
-                        </div>
-                        <div class="desc"> Total de sensores </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <a class="dashboard-stat dashboard-stat-v2 green-seagreen" href="#">
-                    <div class="visual">
-                        <i class="fa fa-globe"></i>
-                    </div>
-                    <div class="details">
-                        <div class="number">
-                            <span data-counter="counterup" data-value="{{ total_proyectos }}">0</span></div>
-                        <div class="desc"> Total de consumo </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
     <div class="row">
-        <div class="col-sm-6">
-            <div class="portlet light bordered">
-                <div class="portlet-title">
-                    <div class="caption">
-                        <i class="icon-share font-dark hide"></i>
-                        <span class="caption-subject font-dark bold uppercase">Sensores Activos</span>
+        <div class="col-md-12 col-sm-6">
+            <div class="row">
+                <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12">
+                    <div class="widget widget-stats bg-blue">
+                        <div class="stats-icon stats-icon-lg"><i class="fa fa-microchip"></i></div>
+                        <div class="stats-title">Total de sensores</div>
+                        <div class="stats-number">1</div>
+                        <div class="stats-desc"></div>
                     </div>
                 </div>
-                <div class="portlet-body">
+                <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12">
+                    <div class="widget widget-stats bg-green">
+                        <div class="stats-icon stats-icon-lg"><i class="fa fa-usd"></i></div>
+                        <div class="stats-title">Total de consumo</div>
+                        <div class="stats-number">58.000</div>
+                        <div class="stats-desc"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="background-color: white; height: 198px; margin-right: 1px; margin-left: 3px;">
+                <h4 style="padding-left: 10px; padding-right: 10px; margin-top: 15px">
+                    Sensores Activos
+                </h4>
+                <hr>
+                {% if lista_cumpleanios %}
+                    <div class="row" data-scrollbar="true" style="height: 110px;">
+                        <ul class="media-list media-list-with-divider media-messaging hover-list" style="padding-left: 10px">
+                            {% for item in lista_cumpleanios %}
+                                <li class="media media-sm">
+                                    <a href="{% url 'gestion_personas:ver' item.pk %}" class="pull-left">
+                                        <div class="label label-sm label-{{ item.color }}">
+                                            <i class="fa fa-birthday-cake"></i>
+                                        </div>
+                                    </a>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">{{ item.nombre }}</h5>
+                                        <p>{{ item.fecha }} ({{ item.tiempo_restante }})</p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="col-md-12">
+                        <div class="alert alert-info" role="alert">
+                            No se encontraron sensores activos.
+                        </div>
+                    </div>
+                {% endif %}
                 </div>
             </div>
         </div>
     </div>
-
-
-
 {% endblock %}
 
 {% block javascript %}
-    <script src="{% static 'assets/global/plugins/counterup/jquery.waypoints.min.js' %}" type="text/javascript"></script>
-    <script src="{% static 'assets/global/plugins/counterup/jquery.counterup.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/plugins/counterup/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/plugins/counterup/jquery.counterup.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/plugins/openlayers_v4.1.1/build/ol.js' %}"></script>
+
 {% endblock %}
