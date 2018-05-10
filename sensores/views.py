@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.views.generic import ListView, CreateView, UpdateView
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 from .models import Sensores
 from .forms import SensoresForm
@@ -16,6 +17,7 @@ class SensoresCreateView(CreateView):
     """
     model = Sensores
     form_class = SensoresForm
+    success_url = reverse_lazy('gestion_sensores:listar_sensor')
 
     def form_valid(self, form):
         messages.success(self.request, "Sensor creado correctamente")
@@ -30,6 +32,7 @@ class SensoresUpdateView(UpdateView):
     """
     model = Sensores
     form_class = SensoresForm
+    success_url = reverse_lazy('gestion_sensores:listar_sensor')
 
     def form_valid(self, form):
         if form.has_changed():

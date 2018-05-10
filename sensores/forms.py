@@ -13,4 +13,4 @@ class SensoresForm(forms.ModelForm):
 
     class Meta:
         model = Sensores
-        fields = ('nombre', 'estado', 'ubicacion')
+        fields = ('nombre', 'codigo', 'estado', 'ubicacion')

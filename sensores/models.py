@@ -16,8 +16,9 @@ class Sensores(models.Model):
     )
 
     nombre = models.CharField(max_length=50, verbose_name='Nombre del sensor')
+    codigo = models.CharField(max_length=4, verbose_name='Código del sensor', unique=True)
     estado = models.PositiveIntegerField(choices=ESTADO)
-    ubicacion = models.CharField(max_length=50, verbose_name='Nombre del sensor')
+    ubicacion = models.CharField(max_length=50, verbose_name='Ubicación del sensor')
 
     def __str__(self):
         return self.nombre

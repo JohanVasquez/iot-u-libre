@@ -1,7 +1,3 @@
-/**
- * Created by Diego Monsalve on 21/03/17.
- * Script encargado de cargar el plugin datatable
- */
 
 $('head').append('<link rel="stylesheet" type="text/css" href="'+STATIC_URL+'assets/plugins/datatables/media/css/dataTables.bootstrap.min.css">');
 $('head').append('<link rel="stylesheet" type="text/css" href="'+STATIC_URL+'assets/plugins/datatables/extensions/Buttons/css/buttons.bootstrap.min.css">');

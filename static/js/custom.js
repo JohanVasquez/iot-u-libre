@@ -1,8 +1,3 @@
-/**
- * Created by Diego Monsalve on 10/03/17.
- * Script donde se inicializan algunos plugins generales de la aplicación
- */
-
 // Encargado de colocar '(*)' en todos los campos obligatorios de un formulario
 $('form').each(function(){
     if(!$(this).hasClass('no-alert')){

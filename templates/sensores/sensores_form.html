@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{%block titulo_pagina %}
+    {% if object %} Editar {% else %} Registrar {% endif %} Afiliación
+{% endblock%}
+
+{% block titulo_panel %}
+	{% if object %} Editar {% else %} Registrar {% endif %} Afiliación
+{% endblock titulo_panel %}
+
+{% block breadcrumb %}
+    <li>
+        <a href="{% url 'gestion_sensores:listar_sensor' %}">Sensores</a>
+    </li>
+    <li class="active">
+        <span>{% if object %} Consultar sensor {% else %} Registrar sensor {% endif %} </span>
+    </li>
+{% endblock %}
+
+{% block titulo_contenido %}
+    Gestión Sensores
+{% endblock %}
+
+{% block contenido_panel_form %}
+
+	<form id="form_sensores" action="" method="post">
+		{% csrf_token %}
+
+        <div class="row">
+            <div class="col-sm-6">
+                {% bootstrap_field form.nombre %}
+            </div>
+            <div class="col-sm-6">
+                {% bootstrap_field form.codigo %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                {% bootstrap_field form.estado %}
+            </div>
+            <div class="col-sm-6">
+                {% bootstrap_field form.ubicacion %}
+            </div>
+        </div>
+
+        {% buttons %}
+		    <button type="submit" class="btn btn-primary pull-right">
+		      <i class="fa fa-edit"></i>
+		      {% if object %} Editar {% else %} Registrar {% endif %}
+		    </button>
+	  	{% endbuttons %}
+	</form>
+
+{% endblock %}
+
+{% block javascript %}
+{% endblock javascript %}</html>

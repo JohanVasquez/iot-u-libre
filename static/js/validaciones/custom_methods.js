@@ -1,8 +1,3 @@
-/**
- * Created by Diego Monsalve on 25/04/17.
- * Script donde se implementan funciones personalizadas para ser aplicadas como reglas sobre los campos de un formulario
- */
-
 
 $.getScript(STATIC_URL+"js/moment.js");
 

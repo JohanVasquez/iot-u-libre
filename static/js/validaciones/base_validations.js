@@ -1,7 +1,4 @@
-/**
- * Created by Diego Monsalve on 20/02/17.
- * Script que implementa el plugin Jquery Validation para hacer validaciones en los formularios.
- */
+
 
 $.getScript(STATIC_URL+"assets/plugins/jquery-validation/js/jquery.validate.min.js", function(){
     $.getScript(STATIC_URL+"assets/plugins/jquery-validation/js/additional-methods.min.js", function(){
