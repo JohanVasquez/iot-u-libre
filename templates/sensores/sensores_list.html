@@ -40,8 +40,14 @@
                     <tr>
                         <td>{{ sensor.nombre }}</td>
                         <td>{{ sensor.codigo }}</td>
-                        <td>{{ sensor.get_estado_display }}</td>
                         <td>{{ sensor.ubicacion }}</td>
+                        <td>
+                            {% if sensor.estado == 0 %}
+                                <span class="btn label label-info btn-lg">Activo</span>
+                            {% else %}
+                                <span class="btn label label-danger btn-lg">Inactivo</span>
+                            {% endif %}
+                        </td>
                         <td>
                             <a href="{% url 'gestion_sensores:editar_sensor' sensor.pk%}" title="Editar"
                                class="btn btn-circle btn-icon-only blue-steel"><i class="fa fa-edit"></i>
