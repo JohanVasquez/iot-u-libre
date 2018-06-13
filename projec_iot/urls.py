@@ -34,7 +34,6 @@ urlpatterns = [
       auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^restablecer-password-completado/', auth_views.password_reset_complete,
         name='password_reset_complete'),
-    url(r'session_security/', include('session_security.urls')),
 
     # apps
     url(r'^gestion-sensores/', include('sensores.urls', namespace='gestion_sensores')),

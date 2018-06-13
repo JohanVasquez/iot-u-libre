@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'bootstrap3',
-    'session_security',
-
     'sensores',
     'consumo',
 ]
@@ -62,7 +60,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'session_security.middleware.SessionSecurityMiddleware',
 
 ]
 
