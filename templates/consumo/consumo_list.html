@@ -1,0 +1,57 @@
+{%extends "base.html"%}
+{% load staticfiles %}
+
+{%block titulo_panel %}
+     Consumo Energetico
+{% endblock%}
+
+{%block titulo_pagina %}
+     Consumo Energetico
+{% endblock%}
+
+{% block breadcrumb %}
+    <li class="active">
+        <span>Consumo Energetico</span>
+    </li>
+{% endblock %}
+
+{% block titulo_contenido %}
+    Consultar Consumo Energetico
+{% endblock %}
+
+{% block botones_panel %}
+    <a href="{% url 'gestion_consumo:crear_consumo' %}" class="btn btn-primary btn-xs"><i class="fa fa-clipboard"></i> Registrar</a>
+{% endblock %}
+
+{% block contenido_panel %}
+    {% if object_list %}
+        <table class="table table-bordered table-hover datatable">
+            <thead>
+                <tr>
+                    <th>Sensor</th>
+                    <th>Consumo</th>
+                    <th>Fecha</th>
+                    <th>valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for consumo in object_list %}
+                    <tr>
+                        <td>{{ consumo.sensor }}</td>
+                        <td>{{ consumo.consumo }}</td>
+                        <td>{{ consumo.fecha }}</td>
+                        <td>{{ consumo.valor }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            No hay cargos registrados en el sistema.
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/init_datatable.js' %}"></script>
+{% endblock %}

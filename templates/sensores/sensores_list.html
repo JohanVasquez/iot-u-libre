@@ -40,7 +40,7 @@
                     <tr>
                         <td>{{ sensor.nombre }}</td>
                         <td>{{ sensor.codigo }}</td>
-                        <td>{{ sensor.ubicacion }}</td>
+                        <td>{{ sensor.get_ubicacion_display }}</td>
                         <td>
                             {% if sensor.estado == 0 %}
                                 <span class="btn label label-info btn-lg">Activo</span>

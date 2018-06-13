@@ -38,5 +38,6 @@ urlpatterns = [
 
     # apps
     url(r'^gestion-sensores/', include('sensores.urls', namespace='gestion_sensores')),
+    url(r'^gestion-consumo/', include('consumo.urls', namespace='gestion_consumo')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

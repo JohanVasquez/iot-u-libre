@@ -14,11 +14,20 @@ class Sensores(models.Model):
         (0, 'ACTIVO'),
         (1, 'INACTIVO'),
     )
+    UBICACION = (
+        (0, 'SALA'),
+        (1, 'CUARTOS'),
+        (2, 'COCINA'),
+        (3, 'BAÑO'),
+        (4, 'COMEDOR'),
+        (5, 'PATIO'),
+        (5, 'OTROS...'),
+    )
 
     nombre = models.CharField(max_length=50, verbose_name='Nombre del sensor')
     codigo = models.CharField(max_length=4, verbose_name='Código del sensor', unique=True)
     estado = models.PositiveIntegerField(choices=ESTADO)
-    ubicacion = models.CharField(max_length=50, verbose_name='Ubicación del sensor')
+    ubicacion = models.PositiveIntegerField(choices=UBICACION)
 
     def __str__(self):
         return self.nombre

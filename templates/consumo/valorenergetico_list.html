@@ -1,0 +1,55 @@
+{%extends "base.html"%}
+{% load staticfiles %}
+
+{%block titulo_panel %}
+     Valor Energetico
+{% endblock%}
+
+{%block titulo_pagina %}
+     Valor Energetico
+{% endblock%}
+
+{% block breadcrumb %}
+    <li class="active">
+        <span>Valor Energetico</span>
+    </li>
+{% endblock %}
+
+{% block titulo_contenido %}
+    Valor Energetico
+{% endblock %}
+
+{% block botones_panel %}
+    <a href="{% url 'gestion_consumo:crear_valor' %}" class="btn btn-primary btn-xs"><i class="fa fa-clipboard"></i> Registrar</a>
+{% endblock %}
+
+{% block contenido_panel %}
+    {% if object_list %}
+        <table class="table table-bordered table-hover datatable">
+            <thead>
+                <tr>
+                    <th>Moneda</th>
+                    <th>Unidad</th>
+                    <th>Tiempo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for valor in object_list %}
+                    <tr>
+                        <td>{{ valor.get_moneda_display }}</td>
+                        <td>{{ valor.get_unida_display }}</td>
+                        <td>{{ valor.get_tiempo_display }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            No hay cargos registrados en el sistema.
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/init_datatable.js' %}"></script>
+{% endblock %}

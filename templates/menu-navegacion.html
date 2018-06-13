@@ -13,4 +13,23 @@
         </ul>
     </li>
 
+    <li class="has-sub {% if 'gestion-consumo/' in request.path %}active{% endif %}">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <b class="caret pull-right"></b>
+            <i class="fa fa-money"></i>
+            <span class="title">Gestión consumo</span>
+        </a>
+        <ul class="sub-menu">
+            <li {% if 'listar-consumo' in request.path %}class="active"{% endif %}>
+                <a href="{% url 'gestion_consumo:listar_consumo' %}" class="nav-link">
+                    <span class="title">Consumo</span>
+                </a>
+            </li>
+            <li {% if 'listar-valor' in request.path %}class="active"{% endif %}>
+                <a href="{% url 'gestion_consumo:listar_valor' %}" class="nav-link">
+                    <span class="title">Valor energetico</span>
+                </a>
+            </li>
+        </ul>
+    </li>
 

@@ -36,7 +36,7 @@
                     <div class="widget widget-stats bg-blue">
                         <div class="stats-icon stats-icon-lg"><i class="fa fa-microchip"></i></div>
                         <div class="stats-title">Total de sensores</div>
-                        <div class="stats-number">1</div>
+                        <div class="stats-number">{{ total_sensores }}</div>
                         <div class="stats-desc"></div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="widget widget-stats bg-green">
                         <div class="stats-icon stats-icon-lg"><i class="fa fa-usd"></i></div>
                         <div class="stats-title">Total de consumo</div>
-                        <div class="stats-number">58.000</div>
+                        <div class="stats-number">{{ consumo_total }}</div>
                         <div class="stats-desc"></div>
                     </div>
                 </div>
@@ -55,19 +55,14 @@
                     Sensores Activos
                 </h4>
                 <hr>
-                {% if lista_cumpleanios %}
+                {% if sensores_activos %}
                     <div class="row" data-scrollbar="true" style="height: 110px;">
                         <ul class="media-list media-list-with-divider media-messaging hover-list" style="padding-left: 10px">
-                            {% for item in lista_cumpleanios %}
+                            {% for item in sensores_activos %}
                                 <li class="media media-sm">
-                                    <a href="{% url 'gestion_personas:ver' item.pk %}" class="pull-left">
-                                        <div class="label label-sm label-{{ item.color }}">
-                                            <i class="fa fa-birthday-cake"></i>
-                                        </div>
-                                    </a>
                                     <div class="media-body">
                                         <h5 class="media-heading">{{ item.nombre }}</h5>
-                                        <p>{{ item.fecha }} ({{ item.tiempo_restante }})</p>
+                                        <p>{{ item.codigo }} ({{ item.get_ubicacion_display }})</p>
                                     </div>
                                 </li>
                             {% endfor %}
@@ -90,5 +85,4 @@
     <script src="{% static 'assets/plugins/counterup/jquery.waypoints.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'assets/plugins/counterup/jquery.counterup.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'assets/plugins/openlayers_v4.1.1/build/ol.js' %}"></script>
-
 {% endblock %}

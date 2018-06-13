@@ -3,48 +3,49 @@
 {% load staticfiles %}
 
 {%block titulo_pagina %}
-    {% if object %} Editar {% else %} Registrar {% endif %} Afiliación
+    {% if object %} Editar {% else %} Registrar {% endif %} Consumo Energetico
 {% endblock%}
 
 {% block titulo_panel %}
-	{% if object %} Editar {% else %} Registrar {% endif %} Afiliación
+	{% if object %} Editar {% else %} Registrar {% endif %} Consumo Energetico
 {% endblock titulo_panel %}
 
 {% block breadcrumb %}
     <li>
-        <a href="{% url 'gestion_sensores:listar_sensor' %}">Sensores</a>
+        <a href="{% url 'gestion_consumo:listar_consumo' %}">Consumo Energetico</a>
     </li>
     <li class="active">
-        <span>{% if object %} Consultar sensor {% else %} Registrar sensor {% endif %} </span>
+        <span>{% if object %} Consultar sensor {% else %} Registrar Consumo Energetico {% endif %} </span>
     </li>
 {% endblock %}
 
 {% block titulo_contenido %}
-    Gestión Sensores
+    Consumo Energetico
 {% endblock %}
 
 {% block contenido_panel_form %}
 
-	<form id="form_sensores" action="" method="post">
+	<form id="form_sensores"  method="post">
 		{% csrf_token %}
 
         <div class="row">
             <div class="col-sm-6">
-                {% bootstrap_field form.nombre %}
+                {% bootstrap_field form.sensor %}
             </div>
             <div class="col-sm-6">
-                {% bootstrap_field form.codigo %}
+                {% bootstrap_field form.consumo %}
             </div>
         </div>
 
         <div class="row">
             <div class="col-sm-6">
-                {% bootstrap_field form.estado %}
+                {% bootstrap_field form.fecha %}
             </div>
             <div class="col-sm-6">
-                {% bootstrap_field form.ubicacion %}
+                {% bootstrap_field form.valor %}
             </div>
         </div>
+
 
         {% buttons %}
 		    <button type="submit" class="btn btn-primary pull-right">
