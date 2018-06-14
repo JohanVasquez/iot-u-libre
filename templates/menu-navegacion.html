@@ -33,3 +33,17 @@
         </ul>
     </li>
 
+    <li class="has-sub {% if 'gestion-estadistica/' in request.path %}active{% endif %}">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <b class="caret pull-right"></b>
+            <i class="fa fa-microchip"></i>
+            <span class="title">Gestión Estadistica</span>
+        </a>
+        <ul class="sub-menu">
+            <li {% if 'estadistica/' in request.path %}class="active"{% endif %}>
+                <a href="{% url 'gestion_estadistica:crear_grafica' %}" class="nav-link">
+                    <span class="title">Sensores</span>
+                </a>
+            </li>
+        </ul>
+    </li>
