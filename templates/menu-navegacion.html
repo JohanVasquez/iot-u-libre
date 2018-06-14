@@ -42,7 +42,12 @@
         <ul class="sub-menu">
             <li {% if 'estadistica/' in request.path %}class="active"{% endif %}>
                 <a href="{% url 'gestion_estadistica:crear_grafica' %}" class="nav-link">
-                    <span class="title">Sensores</span>
+                    <span class="title">Gráfica</span>
+                </a>
+            </li>
+            <li {% if 'estadistica/' in request.path %}class="active"{% endif %}>
+                <a href="{% url 'gestion_estadistica:tiempo_real' %}" class="nav-link">
+                    <span class="title">Gráfica tiempo real</span>
                 </a>
             </li>
         </ul>

@@ -12,5 +12,16 @@ class Grafica(TemplateView):
         context = super(Grafica, self).get_context_data(*args, **kwargs)
         """ORM de django"""
         sensores = Sensores.objects.filter(codigo=1)
-        context["variable"] = "hola mundo"
+        context["variable"] = sensores
+        return context
+
+
+class Tiempo_real(TemplateView):
+    template_name = 'grafica/tiempo_real.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(Tiempo_real, self).get_context_data(*args, **kwargs)
+        """ORM de django"""
+        sensores = Sensores.objects.filter(codigo=1)
+        context["variable"] = sensores
         return context
