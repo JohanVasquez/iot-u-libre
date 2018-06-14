@@ -25,8 +25,10 @@
 
 
 {% block contenido_panel %}
-    {% if variable %}
-        {{ variable }}
+    {% if obj_sensor %}
+        {% for sensor in obj_sensor %}
+        {{ sensor.nombre }}
+        {% endfor %}
     {% else %}
         <div class="alert alert-info" role="alert">
             No hay cargos registrados en el sistema.
