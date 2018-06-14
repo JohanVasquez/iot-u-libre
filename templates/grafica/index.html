@@ -25,7 +25,9 @@
 
 
 {% block contenido_panel %}
-<script>
+
+    {% if obj_sensor %}
+        <script>
 window.onload = function() {
 
 var chart = new CanvasJS.Chart("chartContainer", {
@@ -44,13 +46,12 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		indexLabelFontSize: 16,
 		indexLabel: "{label} - {y}%",
 		dataPoints: [
-			{ y: 51.08, label: "Nevera" },
-			{ y: 27.34, label: "Estufa" },
-			{ y: 10.62, label: "Computador" },
-			{ y: 10.96, label: "Otros" }
+                {% for sensor in obj_sensor %}
+                    { y: 33.3333, label: "{{sensor.nombre}}" },
 
-		]
-	}]
+                {% endfor %}
+]
+}]
 });
 chart.render();
 
@@ -59,7 +60,14 @@ chart.render();
 </head>
 <body>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            No hay cargos registrados en el sistema.
+        </div>
+    {% endif %}
 {% endblock %}
+
 
 {% block javascript %}
 <script src="{% static 'js/canvasjs.min.js' %}"></script>
