@@ -50,5 +50,10 @@
                     <span class="title">Gráfica tiempo real</span>
                 </a>
             </li>
+            <li {% if 'crear-historico' in request.path %}class="active"{% endif %}>
+                <a href="{% url 'gestion_estadistica:crear_historico' %}" class="nav-link">
+                    <span class="title">Histórico de consumo</span>
+                </a>
+            </li>
         </ul>
     </li>

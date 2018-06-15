@@ -25,3 +25,14 @@ class Tiempo_real(TemplateView):
         sensores = list(Sensores.objects.all())
         context["obj_sensor"] = sensores
         return context
+
+
+class Historico(TemplateView):
+    template_name = 'grafica/historico.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(Historico, self).get_context_data(*args, **kwargs)
+        """ORM de django"""
+        sensores = list(Sensores.objects.all())
+        context["obj_sensor"] = sensores
+        return context

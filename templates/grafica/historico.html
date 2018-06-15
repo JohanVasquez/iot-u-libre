@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block titulo_pagina %}
+    Grafica
+{% endblock %}
+
+
+{%block titulo_panel %}
+     Histórico de consumo energético
+{% endblock%}
+
+
+{% block breadcrumb %}
+    <li class="active">
+        <span>Sensores</span>
+    </li>
+{% endblock %}
+
+
+{% block titulo_contenido %}
+    Consultar Estadísticos
+{% endblock %}
+
+
+{% block contenido_panel %}
+    {% if obj_sensor %}
+        {% for sensor in obj_sensor %}
+        {{ sensor.nombre }}
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            No hay cargos registrados en el sistema.
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
