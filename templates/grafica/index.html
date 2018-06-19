@@ -47,7 +47,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		indexLabel: "{label} - {y}%",
 		dataPoints: [
                 {% for sensor in obj_sensor %}
-                    { y: 33.3333, label: "{{sensor.nombre}}" },
+                    { y: 25, label: "{{sensor.nombre}}" },
 
                 {% endfor %}
 ]

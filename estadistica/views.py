@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.views.generic import TemplateView
 from sensores.models import Sensores
+from consumo.models import Consumo
 from django.shortcuts import render
 
 
@@ -33,6 +34,6 @@ class Historico(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(Historico, self).get_context_data(*args, **kwargs)
         """ORM de django"""
-        sensores = list(Sensores.objects.all())
+        sensores = list(Consumo.objects.all())
         context["obj_sensor"] = sensores
         return context

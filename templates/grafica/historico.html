@@ -26,8 +26,8 @@
 
 {% block contenido_panel %}
     {% if obj_sensor %}
-        {% for sensor in obj_sensor %}
-        {{ sensor.nombre }}
+        {% for consumo in obj_sensor %}
+        {{ consumo.sensor.nombre}}
         {% endfor %}
     {% else %}
         <div class="alert alert-info" role="alert">
