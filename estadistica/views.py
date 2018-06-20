@@ -36,4 +36,17 @@ class Historico(TemplateView):
         """ORM de django"""
         sensores = list(Consumo.objects.all())
         context["obj_sensor"] = sensores
+        list_sensores = Sensores.objects.all()
+        list_consumo = []
+        consm = 0
+        for sensor in list_sensores:
+            consumos = Consumo.objects.filter(pk=sensor.pk)
+            for consumo in consumos:
+                consm += consumo.consumo
+            list_consumo.append([sensor, consumos])
+            consm = 0
+        for lista in list_consumo:
+            print(lista[0])
+        # correcion
+
         return context
