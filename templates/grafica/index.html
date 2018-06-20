@@ -47,7 +47,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
         indexLabel: "{label} - {y}%",
         dataPoints: [
         {% for k,v in d_consumo.items %}
-            { y: ("{{v}}"/"{{consum_total}}")*100, label: "{{k}}" },
+            { y: parseFloat(("{{v}}"/"{{consum_total}}" )*100).toFixed(2), label: "{{k}}" },
         {% endfor %}
 
     ]

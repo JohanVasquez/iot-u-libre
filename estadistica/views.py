@@ -78,4 +78,9 @@ class Historico(TemplateView):
 
         context["d_consumo"] = result
 
+        suma = 0
+        for consumos in sensores:
+            suma = suma+int(consumos.consumo)
+        context["consum_total"] = suma
+
         return context
