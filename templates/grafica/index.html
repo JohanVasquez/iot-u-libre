@@ -8,7 +8,7 @@
 
 
 {%block titulo_panel %}
-     Grafica
+     Histórico de consumo energético
 {% endblock%}
 
 
@@ -31,43 +31,43 @@
 window.onload = function() {
 
 var chart = new CanvasJS.Chart("chartContainer", {
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
-	exportEnabled: true,
-	animationEnabled: true,
-	title: {
-		text: "Promedio de Consumo energético"
-	},
-	data: [{
-		type: "pie",
-		startAngle: 25,
-		toolTipContent: "<b>{label}</b>: {y}%",
-		showInLegend: "true",
-		legendText: "{label}",
-		indexLabelFontSize: 16,
-		indexLabel: "{label} - {y}%",
-		dataPoints: [
-                {% for sensor in obj_sensor %}
-                    { y: 25, label: "{{sensor.nombre}}" },
+    theme: "light2", // "light1", "light2", "dark1", "dark2"
+    exportEnabled: true,
+    animationEnabled: true,
+    title: {
+        text: "Promedio de Consumo energético"
+    },
+    data: [{
+        type: "pie",
+        startAngle: 25,
+        toolTipContent: "<b>{label}</b>: {y}%",
+        showInLegend: "true",
+        legendText: "{label}",
+        indexLabelFontSize: 16,
+        indexLabel: "{label} - {y}%",
+        dataPoints: [
+        {% for k,v in d_consumo.items %}
+            { y: ("{{v}}"/"{{consum_total}}")*100, label: "{{k}}" },
+        {% endfor %}
 
-                {% endfor %}
-]
-}]
-});
-chart.render();
+    ]
+    }]
+    });
+    chart.render();
 
-}
-</script>
-</head>
-<body>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    }
+    </script>
+    </head>
+    <body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 
-    {% else %}
-        <div class="alert alert-info" role="alert">
-            No hay cargos registrados en el sistema.
-        </div>
-    {% endif %}
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                No hay cargos registrados en el sistema.
+            </div>
+        {% endif %}
+
 {% endblock %}
-
 
 {% block javascript %}
 <script src="{% static 'js/canvasjs.min.js' %}"></script>

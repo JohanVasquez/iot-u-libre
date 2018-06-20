@@ -25,23 +25,50 @@
 
 
 {% block contenido_panel %}
+
     {% if obj_sensor %}
-        {% for consumo in obj_sensor %}
-        {{ consumo.sensor.nombre}}
+        <script>
+window.onload = function() {
 
-        {% endfor %}
-
+var chart = new CanvasJS.Chart("chartContainer", {
+    theme: "light2", // "light1", "light2", "dark1", "dark2"
+    exportEnabled: true,
+    animationEnabled: true,
+    title: {
+        text: "Promedio de Consumo energético"
+    },
+    data: [{
+        type: "pie",
+        startAngle: 25,
+        toolTipContent: "<b>{label}</b>: {y}%",
+        showInLegend: "true",
+        legendText: "{label}",
+        indexLabelFontSize: 16,
+        indexLabel: "{label} - {y}%",
+        dataPoints: [
         {% for k,v in d_consumo.items %}
-            {{ v }}
+            { y: ("{{v}}"/21233)*100, label: "{{k}}" },
         {% endfor %}
 
+    ]
+    }]
+    });
+    chart.render();
 
-    {% else %}
-        <div class="alert alert-info" role="alert">
-            No hay cargos registrados en el sistema.
-        </div>
-    {% endif %}
+    }
+    </script>
+    </head>
+    <body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                No hay cargos registrados en el sistema.
+            </div>
+        {% endif %}
+
 {% endblock %}
 
 {% block javascript %}
+<script src="{% static 'js/canvasjs.min.js' %}"></script>
 {% endblock %}

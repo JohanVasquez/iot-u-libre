@@ -12,8 +12,31 @@ class Grafica(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(Grafica, self).get_context_data(*args, **kwargs)
         """ORM de django"""
-        sensores = list(Sensores.objects.all())
+        sensores = list(Consumo.objects.all())
         context["obj_sensor"] = sensores
+
+        n = []  # Nombre del sensor
+        v = []  # valor del sensores
+
+        for consum in sensores:
+            n.append(consum.sensor.nombre)
+            v.append(consum.consumo)
+
+        # Creo diccionario para operar duplicados
+        dic_consumo = list(zip(n, v))  # los duplicados se agruparan y su valor de consumo se sumara
+        result = {}  # aqui estara la suma de cada valor del sensor sin repetirlo
+
+        for k, v in dic_consumo:
+            total = result.get(k, 0) + v
+            result[k] = total
+
+        context["d_consumo"] = result
+
+        suma = 0
+        for consumos in sensores:
+            suma = suma+int(consumos.consumo)
+        context["consum_total"] = suma
+
         return context
 
 
