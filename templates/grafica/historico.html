@@ -28,7 +28,14 @@
     {% if obj_sensor %}
         {% for consumo in obj_sensor %}
         {{ consumo.sensor.nombre}}
+
         {% endfor %}
+
+        {% for k,v in d_consumo.items %}
+            {{ v }}
+        {% endfor %}
+
+
     {% else %}
         <div class="alert alert-info" role="alert">
             No hay cargos registrados en el sistema.
