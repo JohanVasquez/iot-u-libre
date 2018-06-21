@@ -33,3 +33,27 @@
         </ul>
     </li>
 
+    <li class="has-sub {% if 'gestion-estadistica/' in request.path %}active{% endif %}">
+        <a href="javascript:;" class="nav-link nav-toggle">
+            <b class="caret pull-right"></b>
+            <i class="fa fa-pie-chart"></i>
+            <span class="title">Gestión Estadistica</span>
+        </a>
+        <ul class="sub-menu">
+            <li {% if 'crear-grafica' in request.path %}class="active"{% endif %}>
+                <a href="{% url 'gestion_estadistica:crear_grafica' %}" class="nav-link">
+                    <span class="title">Gráfica</span>
+                </a>
+            </li>
+            <li {% if 'tiempo-real' in request.path %}class="active"{% endif %}>
+                <a href="{% url 'gestion_estadistica:tiempo_real' %}" class="nav-link">
+                    <span class="title">Gráfica tiempo real</span>
+                </a>
+            </li>
+            <li {% if 'crear-historico' in request.path %}class="active"{% endif %}>
+                <a href="{% url 'gestion_estadistica:crear_historico' %}" class="nav-link">
+                    <span class="title">Histórico de consumo</span>
+                </a>
+            </li>
+        </ul>
+    </li>

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block titulo_pagina %}
+    Grafica
+{% endblock %}
+
+
+{%block titulo_panel %}
+     Gráfica en tiempo real
+{% endblock%}
+
+
+{% block breadcrumb %}
+    <li class="active">
+        <span>Sensores</span>
+    </li>
+{% endblock %}
+
+
+{% block titulo_contenido %}
+    Consultar Estadísticos
+{% endblock %}
+
+
+{% block contenido_panel %}
+<script>
+window.onload = function () {
+
+var dps = [];
+var chart = new CanvasJS.Chart("chartContainer", {
+	exportEnabled: true,
+	title :{
+		text: "Consumo en tiempo real"
+	},
+	axisY: {
+        title: "Amperaje",
+		includeZero: false
+	},
+    axisX: {
+        title: "Segundos",
+		includeZero: false
+	},
+	data: [{
+		type: "spline",
+		markerSize: 0,
+		dataPoints: dps
+	}]
+});
+
+var xVal = 0;
+var yVal = 100;
+var updateInterval = 1000;
+var dataLength = 50; // number of dataPoints visible at any point
+
+var updateChart = function (count) {
+	count = count || 1;
+	// count is number of times loop runs to generate random dataPoints.
+	for (var j = 0; j < count; j++) {
+		yVal = yVal + Math.round(5 + Math.random() *(-5-5));
+		dps.push({
+			x: xVal,
+			y: yVal
+		});
+		xVal++;
+	}
+	if (dps.length > dataLength) {
+		dps.shift();
+	}
+	chart.render();
+};
+
+updateChart(dataLength);
+setInterval(function(){ updateChart() }, updateInterval);
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width:100%;"></div>
+{% endblock %}
+
+
+{% block javascript %}
+<script src="{% static 'js/canvasjs.min.js' %}"></script>
+{% endblock %}

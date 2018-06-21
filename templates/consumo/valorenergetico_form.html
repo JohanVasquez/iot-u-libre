@@ -25,24 +25,24 @@
 
 {% block contenido_panel_form %}
 
-	<form id="form_sensores" action="" method="post">
+	<form id="form_sensores" method="post">
 		{% csrf_token %}
         <div class="row">
-            <div class="col-sm-6">
-                {% bootstrap_field form.valor_energia %}
+            <div class="col-sm-4">
+                {% bootstrap_field form.unida %}
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 {% bootstrap_field form.moneda %}
+            </div>
+             <div class="col-sm-4">
+                {% bootstrap_field form.unida %}
             </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-6">
-                {% bootstrap_field form.unida %}
+            <div class="col-sm-4">
             </div>
-            <div class="col-sm-6">
-                {% bootstrap_field form.tiempo %}
-            </div>
+
         </div>
 
         {% buttons %}
@@ -54,6 +54,3 @@
 	</form>
 
 {% endblock %}
-
-{% block javascript %}
-{% endblock javascript %}

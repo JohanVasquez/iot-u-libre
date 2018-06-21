@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block titulo_pagina %}
+    Grafica
+{% endblock %}
+
+
+{%block titulo_panel %}
+     Histórico de consumo energético
+{% endblock%}
+
+
+{% block breadcrumb %}
+    <li class="active">
+        <span>Sensores</span>
+    </li>
+{% endblock %}
+
+
+{% block titulo_contenido %}
+    Consultar Estadísticos
+{% endblock %}
+
+
+{% block contenido_panel %}
+
+    {% if obj_sensor %}
+        <script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+    theme: "light2", // "light1", "light2", "dark1", "dark2"
+    exportEnabled: true,
+    animationEnabled: true,
+    title: {
+        text: "Promedio de Consumo energético"
+    },
+    data: [{
+        type: "pie",
+        startAngle: 25,
+        toolTipContent: "<b>{label}</b>: {y}%",
+        showInLegend: "true",
+        legendText: "{label}",
+        indexLabelFontSize: 16,
+        indexLabel: "{label} - {y}%",
+        dataPoints: [
+        {% for k,v in d_consumo.items %}
+            { y: parseFloat(("{{v}}"/"{{consum_total}}" )*100).toFixed(2), label: "{{k}}" },
+        {% endfor %}
+
+    ]
+    }]
+    });
+    chart.render();
+
+    }
+    </script>
+    </head>
+    <body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                No hay cargos registrados en el sistema.
+            </div>
+        {% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/canvasjs.min.js' %}"></script>
+{% endblock %}

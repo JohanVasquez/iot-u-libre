@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'sensores',
     'consumo',
+    'estadistica',
 ]
 
 MIDDLEWARE = [
