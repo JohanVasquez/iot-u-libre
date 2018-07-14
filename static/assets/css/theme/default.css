@@ -87,7 +87,3 @@ Website: http://www.seantheme.com/color-admin-v2.1/admin/html/
 .top-menu .nav > li.active > a:hover {
     background: #00acac;
 }
-img {
-    -webkit-filter: blur(5px); /* Safari */
-    filter: blur(5px);
-}
