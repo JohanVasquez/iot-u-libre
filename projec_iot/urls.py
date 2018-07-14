@@ -39,5 +39,5 @@ urlpatterns = [
     url(r'^gestion-sensores/', include('sensores.urls', namespace='gestion_sensores')),
     url(r'^gestion-consumo/', include('consumo.urls', namespace='gestion_consumo')),
     url(r'^gestion-estadistica/', include('estadistica.urls', namespace='gestion_estadistica')),
-
+    url(r'^api-rest/', include('api_rest.urls', namespace='api_rest')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
