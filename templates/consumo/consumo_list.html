@@ -31,7 +31,6 @@
                     <th>Sensor</th>
                     <th>Consumo</th>
                     <th>Fecha</th>
-                    <th>valor</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,8 +38,7 @@
                     <tr>
                         <td>{{ consumo.sensor }}</td>
                         <td>{{ consumo.consumo }}</td>
-                        <td>{{ consumo.fecha }}</td>
-                        <td>{{ consumo.valor }}</td>
+                        <td>{{ consumo.fecha|date:'Y-m-d H:i:s' }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

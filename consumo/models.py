@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from datetime import datetime
+
 from django.db import models
 from sensores.models import Sensores
 
@@ -15,7 +17,7 @@ class ValorEnergetico(models.Model):
         (0, 'PESOS $(CO)'),
     )
     UNIDAD = (
-        (0, 'Amperio'),
+        (0, 'Watts'),
     )
     TIEMPO = (
         (0, 'Segundo'),
@@ -36,8 +38,7 @@ class Consumo(models.Model):
     """
     sensor = models.ForeignKey(Sensores)
     consumo = models.IntegerField(default=0)
-    fecha = models.DateTimeField()
-    valor = models.ForeignKey(ValorEnergetico)
+    fecha = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.sensor, self.consumo, self.fecha

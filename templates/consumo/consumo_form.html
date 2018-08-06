@@ -42,17 +42,14 @@
                 {% bootstrap_field form.fecha %}
             </div>
             <div class="col-sm-6">
-                {% bootstrap_field form.valor %}
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary pull-right">
+                      <i class="fa fa-edit"></i>
+                      {% if object %} Editar {% else %} Registrar {% endif %}
+                    </button>
+                {% endbuttons %}
             </div>
         </div>
-
-
-        {% buttons %}
-		    <button type="submit" class="btn btn-primary pull-right">
-		      <i class="fa fa-edit"></i>
-		      {% if object %} Editar {% else %} Registrar {% endif %}
-		    </button>
-	  	{% endbuttons %}
 	</form>
 
 {% endblock %}

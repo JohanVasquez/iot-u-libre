@@ -26,4 +26,4 @@ class ConsumoForm(forms.ModelForm):
 
     class Meta:
         model = Consumo
-        fields = ('sensor', 'consumo', 'fecha', 'valor')
+        fields = ('sensor', 'consumo', 'fecha')
