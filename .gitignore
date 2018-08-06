@@ -2,7 +2,7 @@
 *.pyc
 .gitignore~
 .coverage
-
+db.sqlite3
 
 htmlcov/
 media/
