@@ -1,11 +1,8 @@
 .idea
 *.pyc
-.gitignore~
-.coverage
-db.sqlite3~
-*.sqlite3~
-db.sqlite3
 *.sqlite3
+
+.coverage
 
 htmlcov/
 media/
@@ -20,4 +17,3 @@ media/
 !static/assets/plugins/parsley/bower_components/mocha/media/
 
 requirements.txt~
-
