@@ -60,7 +60,9 @@
                 $(select2).find('option:not(:first)').remove();
                 if(res!="error"){
                     costo = res['costo'];
-                     $("#costo-final").append($("<h3 value='"+costo+ "'></h3>").text("$ " + costo));
+                    costo =  costo.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                     $("#costo").remove();
+                     $("#costo-final").append($("<h3 id=costo value='"+costo+ "'></h3>").text("$ " + costo));
 
                 }else{
                     alert(msj);
