@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{%block titulo_pagina %}
+    Costo Energético
+{% endblock%}
+
+{% block titulo_panel %}
+	Costo Energético
+{% endblock titulo_panel %}
+
+{% block breadcrumb %}
+    <li>
+        <a href="{% url 'gestion_consumo:listar_consumo' %}">Consumo Energético</a>
+    </li>
+{% endblock %}
+
+{% block titulo_contenido %}
+    Costo Energético
+{% endblock %}
+
+{% block contenido_panel_form %}
+
+	<form id="form_sensores"  method="post">
+		{% csrf_token %}
+            <div class="row">
+                <div class="col-sm-6">
+                     {% bootstrap_field form.fecha_inicial %}
+                </div>
+                <div class="col-sm-6">
+                    {% bootstrap_field form.fecha_final %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                     {% bootstrap_field form.sensores %}
+                </div>
+                <div class="col-sm-6">
+                     {% bootstrap_field form.costo_kwh %}
+                </div>
+            </div>
+            <div class="alert alert-info fade in m-b-15" id="costo-final">
+            </div>
+	</form>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+    <script type="text/javascript">
+        var token = '{{csrf_token}}';
+
+        function get_opciones(select1, select2, msj, url_request, token) {
+            var dataString = {};
+            dataString['data']=select1;
+            dataString['csrfmiddlewaretoken']=token;
+            var posteo =  $.post(url_request, dataString,function(res){
+                $(select2).find('option:not(:first)').remove();
+                if(res!="error"){
+                    costo = res['costo'];
+                     $("#costo-final").append($("<h3 value='"+costo+ "'></h3>").text("$ " + costo));
+
+                }else{
+                    alert(msj);
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        var token = '{{ csrf_token }}';
+        $(document).ready(function () {
+            $("#id_costo_kwh").change(function(){
+                var msj = "Ocurrió un error al traer los cargos";
+                var data = {"fecha_inicial": $("#id_fecha_inicial").val(),
+                    "fecha_final": $("#id_fecha_final").val(),
+                    "id_sensor": $("#id_sensores").val(),
+                    "costo_kwh": $("#id_costo_kwh").val()}
+                var url_get = "{% url 'gestion_consumo:get_costo' %}";
+                var tipo = $(this);
+                get_opciones(data, tipo, msj, url_get, token);
+            });
+        });
+    </script>
+{% endblock javascript %}

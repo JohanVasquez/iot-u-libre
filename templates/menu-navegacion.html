@@ -27,7 +27,12 @@
             </li>
             <li {% if 'listar-valor' in request.path %}class="active"{% endif %}>
                 <a href="{% url 'gestion_consumo:listar_valor' %}" class="nav-link">
-                    <span class="title">Valor energetico</span>
+                    <span class="title">Valor energético</span>
+                </a>
+            </li>
+            <li {% if 'costo-energetico' in request.path %}class="active"{% endif %}>
+                <a href="{% url 'gestion_consumo:costo_energetico' %}" class="nav-link">
+                    <span class="title">Costo energético</span>
                 </a>
             </li>
         </ul>
